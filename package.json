@@ -1,7 +1,7 @@
 {
   "name": "noflo-gravatar",
   "description": "Gravatar components for NoFlo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Henri Bergius",
     "email": "henri.bergius@iki.fi",
@@ -18,7 +18,7 @@
     }
   ],
   "dependencies": {
-    "noflo": "~0.3.3",
+    "noflo": "~0.5.0",
     "gravatar": "~1.0.6"
   },
   "devDependencies": {
@@ -30,6 +30,7 @@
     "grunt-contrib-watch": "~0.3.1"
   },
   "noflo": {
+    "icon": "user",
     "components": {
       "GetAvatar": "./components/GetAvatar.coffee"
     }
