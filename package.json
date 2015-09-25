@@ -18,7 +18,7 @@
     }
   ],
   "dependencies": {
-    "noflo": "0.5.13",
+    "noflo": "0.5.14",
     "gravatar": "1.0.6"
   },
   "devDependencies": {
