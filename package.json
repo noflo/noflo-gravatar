@@ -11,12 +11,7 @@
     "type": "git",
     "url": "git://github.com/noflo/noflo-gravatar.git"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "undefined/blob/master/LICENSE-MIT"
-    }
-  ],
+  "license": "MIT",
   "dependencies": {
     "noflo": "0.x >= 0.5",
     "gravatar": "1.0.6"
@@ -35,7 +30,7 @@
       "GetAvatar": "./components/GetAvatar.coffee"
     }
   },
-  "keywords": [],
+  "keywords": ["noflo"],
   "scripts": {
     "test": "grunt test"
   }
