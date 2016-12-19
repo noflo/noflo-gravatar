@@ -9,11 +9,13 @@ module.exports = ->
       tasks: ['test']
 
     # BDD tests on Node.js
-    cafemocha:
+    mochaTest:
       nodejs:
         src: ['spec/*.coffee']
         options:
-          reporter: 'dot'
+          reporter: 'spec'
+          require: 'coffee-script/register'
+          grep: process.env.TESTS
 
     # Coding standards
     coffeelint:
@@ -21,8 +23,8 @@ module.exports = ->
 
   # Grunt plugins used for testing
   @loadNpmTasks 'grunt-contrib-watch'
-  @loadNpmTasks 'grunt-cafe-mocha'
+  @loadNpmTasks 'grunt-mocha-test'
   @loadNpmTasks 'grunt-coffeelint'
 
-  @registerTask 'test', ['coffeelint', 'cafemocha']
+  @registerTask 'test', ['coffeelint', 'mochaTest']
   @registerTask 'default', ['test']
