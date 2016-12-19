@@ -20,6 +20,7 @@ class GetAvatar extends noflo.Component
     @inPorts.email.on 'data', (email) =>
       avatar = gravatar.url email,
         s: @size
+      , true
       @outPorts.avatar.send avatar
     @inPorts.email.on 'endgroup', (group) =>
       @outPorts.avatar.endGroup

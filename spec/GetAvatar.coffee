@@ -15,7 +15,7 @@ describe 'GetAvatar component', ->
 
   describe 'for matching email', ->
     address = 'henri.bergius@iki.fi'
-    gravt = 'http://www.gravatar.com/avatar/995f27ce7205a79c55d4e44223cd6de0?s=200'
+    gravt = 'https://s.gravatar.com/avatar/995f27ce7205a79c55d4e44223cd6de0?s=200'
     it 'should produce a valid URL', (done) ->
       avatar.on 'data', (url) ->
         chai.expect(url).to.equal gravt
