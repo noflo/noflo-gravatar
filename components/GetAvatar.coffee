@@ -1,6 +1,8 @@
 noflo = require 'noflo'
 gravatar = require 'gravatar'
 
+# @runtime noflo-nodejs
+
 class GetAvatar extends noflo.Component
   constructor: ->
     @size = 200
