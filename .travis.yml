@@ -1,5 +1,13 @@
 language: node_js
 node_js:
-  - 0.10
+- '4.6'
 before_script:
-  - npm install -g grunt-cli
+- npm install -g grunt-cli
+deploy:
+  provider: npm
+  email: henri.bergius@iki.fi
+  api_key:
+    secure: i8wnbdtO+WgOc4fBOTd8HoLHzJQgN17yZswTASqlQLxn+v9OwJcMNyIxNhYhqX+noHkt9JiZ07/MCwo7WnUYEbNzdagcfCIhDAHKx2R9ACI0ArYfScsFFh8eXNU/peOjQ+TjKG+XVYGXcejfNM5sQZOJRsRuk+DDhwJvu3i7UvE=
+  on:
+    tags: true
+    repo: noflo/noflo-gravatar
