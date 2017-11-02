@@ -17,7 +17,9 @@
     "gravatar": "^1.6.0"
   },
   "devDependencies": {
-    "coffeelint": "^2.0.7",
+    "eslint": "^4.10.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
     "fbp-spec": "^0.2.3",
     "noflo-nodejs": "^0.8.1"
   },
@@ -28,7 +30,7 @@
     "noflo"
   ],
   "scripts": {
-    "pretest": "coffeelint -r components",
+    "pretest": "eslint components/*.js",
     "test": "fbp-spec --secret test --address ws://localhost:3333 --command 'noflo-nodejs --port 3333 --register=false --secret test' spec/"
   }
 }
