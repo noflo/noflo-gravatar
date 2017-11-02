@@ -17,10 +17,9 @@
     "gravatar": "^1.6.0"
   },
   "devDependencies": {
-    "chai": "^4.0.0",
     "coffeelint": "^2.0.7",
-    "coffeescript": "^2.0.2",
-    "mocha": "^4.0.0"
+    "fbp-spec": "^0.2.3",
+    "noflo-nodejs": "^0.8.1"
   },
   "noflo": {
     "icon": "user"
@@ -30,6 +29,6 @@
   ],
   "scripts": {
     "pretest": "coffeelint -r components",
-    "test": "mocha --require coffeescript/register -R spec -t 2000 spec/*.coffee"
+    "test": "fbp-spec --secret test --address ws://localhost:3333 --command 'noflo-nodejs --port 3333 --register=false --secret test' spec/"
   }
 }
