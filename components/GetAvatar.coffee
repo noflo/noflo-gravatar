@@ -3,28 +3,28 @@ gravatar = require 'gravatar'
 
 # @runtime noflo-nodejs
 
-class GetAvatar extends noflo.Component
-  constructor: ->
-    @size = 200
-    @inPorts =
-      email: new noflo.Port 'string'
-      size: new noflo.Port 'int'
-    @outPorts =
-      avatar: new noflo.Port 'string'
-
-    @inPorts.size.on 'data', (data) =>
-      @size = data
-
-    @inPorts.email.on 'begingroup', (group) =>
-      @outPorts.avatar.beginGroup group
-    @inPorts.email.on 'data', (email) =>
-      avatar = gravatar.url email,
-        s: @size
-      , true
-      @outPorts.avatar.send avatar
-    @inPorts.email.on 'endgroup', (group) =>
-      @outPorts.avatar.endGroup
-    @inPorts.email.on 'disconnect', (group) =>
-      @outPorts.avatar.disconnect()
-
-exports.getComponent = -> new GetAvatar
+exports.getComponent = ->
+  c = new noflo.Component
+  c.description = 'Get avatar URL for a given email'
+  c.inPorts.add 'email',
+    datatype: 'string'
+  c.inPorts.add 'size',
+    datatype: 'int'
+    control: true
+    default: 200
+  c.outPorts.add 'avatar',
+    datatype: 'string'
+  c.forwardBrackets =
+    email: ['avatar']
+  c.process (input, output) ->
+    return unless input.hasData 'email'
+    return if input.attached('size').length and not input.hasData 'size'
+    size = 200
+    if input.hasData 'size'
+      size = input.getData 'size'
+    email = input.getData 'email'
+    avatar = gravatar.url email,
+      s: size
+    , true
+    output.sendDone
+      avatar: avatar
