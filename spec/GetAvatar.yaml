@@ -1,0 +1,10 @@
+topic: 'gravatar/GetAvatar'
+cases:
+-
+  name: 'receiving an email'
+  assertion: 'should send an avatar URL'
+  inputs:
+    email: 'henri.bergius@iki.fi'
+  expect:
+    avatar:
+      equals: 'https://s.gravatar.com/avatar/995f27ce7205a79c55d4e44223cd6de0?s=200'
