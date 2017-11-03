@@ -1,7 +1,7 @@
 {
   "name": "noflo-gravatar",
   "description": "Gravatar components for NoFlo",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": {
     "name": "Henri Bergius",
     "email": "henri.bergius@iki.fi",
@@ -21,7 +21,7 @@
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "fbp-spec": "^0.2.3",
-    "noflo-nodejs": "^0.8.1"
+    "noflo-nodejs": ">=0.8.1"
   },
   "noflo": {
     "icon": "user"
