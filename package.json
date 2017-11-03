@@ -13,7 +13,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "noflo": "0.x >= 0.8",
+    "noflo": "^1.0.0",
     "gravatar": "^1.6.0"
   },
   "devDependencies": {
