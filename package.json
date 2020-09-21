@@ -31,6 +31,6 @@
   ],
   "scripts": {
     "pretest": "eslint components/*.js",
-    "test": "fbp-spec --secret test --address ws://localhost:3333 --command 'noflo-nodejs --port 3333 --secret test' spec/"
+    "test": "fbp-spec --secret test --address ws://localhost:3333 --command 'noflo-nodejs --port 3333 --secret test --open false' spec/"
   }
 }
