@@ -12,16 +12,9 @@
     "url": "git://github.com/noflo/noflo-gravatar.git"
   },
   "license": "MIT",
-  "dependencies": {
-    "noflo": "^1.0.0",
-    "gravatar": "^1.6.0"
-  },
-  "devDependencies": {
-    "eslint": "^7.9.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.8.0",
-    "fbp-spec": "^0.8.0",
-    "noflo-nodejs": "^0.15.0"
+  "type": "module",
+  "engines": {
+    "node": ">=22"
   },
   "noflo": {
     "icon": "user"
@@ -29,8 +22,28 @@
   "keywords": [
     "noflo"
   ],
+  "files": [
+    "components/",
+    "spec/",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@noflo/noflo": "^2.0.0-alpha.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.0.0",
+    "@noflo/fbp-spec-runner": "^2.0.0-alpha.0",
+    "@noflo/loader-node": "^2.0.0-alpha.0",
+    "@types/node": "^24.0.0",
+    "typescript": "^5.0.0"
+  },
   "scripts": {
-    "pretest": "eslint components/*.js",
-    "test": "fbp-spec --secret test --address ws://localhost:3333 --command 'noflo-nodejs --port 3333 --secret test --open false' spec/"
+    "lint": "npx @biomejs/biome check --use-editorconfig=true components/ spec/",
+    "format": "npx @biomejs/biome check --use-editorconfig=true --write components/ spec/",
+    "types": "tsc -p tsconfig.json",
+    "test": "npm run types && npm run lint && npm run test:spec",
+    "test:spec": "node \"$(node -p \"require.resolve('@noflo/fbp-spec-runner/src/cli.js')\")\" spec/"
   }
 }
