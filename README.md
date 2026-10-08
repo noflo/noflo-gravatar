@@ -1,4 +1,4 @@
-# noflo-gravatar
+# @noflo/gravatar
 
 Gravatar components for [NoFlo](https://noflojs.org)
 
