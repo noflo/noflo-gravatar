@@ -1,12 +1,12 @@
 topic: gravatar/GetAvatar
 cases:
   - name: receiving an email
-    assertion: should send an avatar URL
+    assertion: should send a SHA-256 avatar URL
     inputs:
       email: henri.bergius@iki.fi
     expect:
       avatar:
-        equals: https://s.gravatar.com/avatar/995f27ce7205a79c55d4e44223cd6de0?s=200
+        equals: https://s.gravatar.com/avatar/0bbc65cfe3d54da56b43f1923784996c052d5cc2f39b0dbe19b0cefb487ef5e5?s=200
   - name: custom size
     assertion: should honor the size control port
     inputs:
@@ -14,11 +14,11 @@ cases:
       email: henri.bergius@iki.fi
     expect:
       avatar:
-        equals: https://s.gravatar.com/avatar/995f27ce7205a79c55d4e44223cd6de0?s=80
+        equals: https://s.gravatar.com/avatar/0bbc65cfe3d54da56b43f1923784996c052d5cc2f39b0dbe19b0cefb487ef5e5?s=80
   - name: email normalization
     assertion: should trim and lowercase the email before hashing
     inputs:
       email: ' Henri.Bergius@IKI.fi '
     expect:
       avatar:
-        equals: https://s.gravatar.com/avatar/995f27ce7205a79c55d4e44223cd6de0?s=200
+        equals: https://s.gravatar.com/avatar/0bbc65cfe3d54da56b43f1923784996c052d5cc2f39b0dbe19b0cefb487ef5e5?s=200

@@ -1,13 +1,12 @@
-import { createHash } from "node:crypto";
-
 import { Component } from "@noflo/noflo";
 
 /**
  * Builds the Gravatar avatar URL for an email address.
  *
- * Replaces the legacy `gravatar` package dependency: the URL form matches
- * `gravatar.url(email, { s: size }, true)` from gravatar 1.x, including
- * email normalization (trim + lowercase) before hashing.
+ * Uses Gravatar's SHA-256 avatar URLs and the Web-standard `crypto.subtle`,
+ * making the component multiplatform (Node, Deno, Bun, browser). SHA-256
+ * URLs serve the same avatar as the legacy MD5 form, but the URL string
+ * itself differs from the pre-2.x MD5 output.
  * @returns {import("@noflo/noflo").Component} The configured component
  */
 export function getComponent() {
@@ -37,7 +36,7 @@ export function getComponent() {
   // Stream grouping on the firing port carries through to the avatar output
   c.forwardBrackets = { email: ["avatar"] };
 
-  c.process((input, output) => {
+  c.process((input) => {
     if (!input.hasData("email")) {
       return;
     }
@@ -48,12 +47,15 @@ export function getComponent() {
     }
     const email = input.getData("email");
     const size = input.hasData("size") ? input.getData("size") : 200;
-    const hash = createHash("md5")
-      .update(email.trim().toLowerCase())
-      .digest("hex");
-    output.sendDone({
-      avatar: `https://s.gravatar.com/avatar/${hash}?s=${size}`,
-    });
+    // Promise-pure style: the resolved output map becomes an implicit sendDone
+    return crypto.subtle
+      .digest("SHA-256", new TextEncoder().encode(email.trim().toLowerCase()))
+      .then((digest) => {
+        const hash = [...new Uint8Array(digest)]
+          .map((byte) => byte.toString(16).padStart(2, "0"))
+          .join("");
+        return { avatar: `https://s.gravatar.com/avatar/${hash}?s=${size}` };
+      });
   });
 
   return c;
